@@ -78,8 +78,9 @@ def fetch_credentials_via_selenium(account_id):
 
                     # Locate input fields for access keys and secret keys
                     time.sleep(3)
-                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_7gdci_149.awsui_input-readonly_2rhyz_7gdci_196")
+                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_8c1nk_149.awsui_input-readonly_2rhyz_8c1nk_196")
                     # changing 6kb1z to 7gdci on 20250515
+                    # changed 7gdci to 8c1nk on 20251006
 
                     access_key = keys_to_copy[2].get_attribute("value")
                     secret_key = keys_to_copy[3].get_attribute("value")
