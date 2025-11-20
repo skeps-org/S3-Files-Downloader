@@ -62,12 +62,14 @@ def fetch_credentials_via_selenium(account_id):
                 # Find the div containing account information
                 account_info_div = button.find_element(By.CSS_SELECTOR, ".awsui_child_18582_whr0e_149:nth-of-type(2)")
                 # changing lbexh to whr0e on 20250515
-                account_p = account_info_div.find_element(By.CSS_SELECTOR, "p.awsui_color-text-body-secondary_18wu0_fxrr2_302")
+                account_p = account_info_div.find_element(By.CSS_SELECTOR, "p.awsui_color-text-body-secondary_18wu0_khxlc_316")
                 # changing 1yxfb to fxrr2 on 20250515
-                account_text = account_p.find_element(By.TAG_NAME, "div").text
+                # changing fxrr2_302 to khxlc_316 on 20251120
+                account_text = account_p.find_element(By.CSS_SELECTOR, ".awsui_child_18582_whr0e_149:nth-of-type(1)").text
+                # changing finding by div tag to css class 
 
                 # Extract account ID and name
-                account_id_in_button = account_text.split("|")[0].strip()
+                account_id_in_button = account_text.strip()
 
                 if account_id_in_button == account_id:
                     button.click()
@@ -78,9 +80,10 @@ def fetch_credentials_via_selenium(account_id):
 
                     # Locate input fields for access keys and secret keys
                     time.sleep(3)
-                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_8c1nk_149.awsui_input-readonly_2rhyz_8c1nk_196")
+                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_1dhxm_149.awsui_input-readonly_2rhyz_1dhxm_203")
                     # changing 6kb1z to 7gdci on 20250515
                     # changed 7gdci to 8c1nk on 20251006
+                    # changed 8c1nk to 1dhxm and 196 to 203 on 20251120
 
                     access_key = keys_to_copy[2].get_attribute("value")
                     secret_key = keys_to_copy[3].get_attribute("value")
