@@ -229,12 +229,14 @@ if start_btn:
     if product:
         account_details = config[product]
         account_id = account_details['AccountId'].replace('"', "")
-        bucket_name = account_details['BucketName']
+        
         if s3_download_folder:
             folder_path = s3_download_folder.split("/", 3)[-1]
+            bucket_name = s3_download_folder.split("/", 3)[-2]
             s3_path_given = True
         else:
             folder_path = account_details['FolderPath']
+            bucket_name = account_details['BucketName']
             s3_path_given = False
 
         # Fetch AWS credentials dynamically
