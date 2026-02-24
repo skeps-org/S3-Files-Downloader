@@ -81,11 +81,12 @@ def fetch_credentials_via_selenium(account_id):
 
                     # Locate input fields for access keys and secret keys
                     time.sleep(3)
-                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_mfjkh_149.awsui_input-readonly_2rhyz_mfjkh_203")
+                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_3fiyi_149.awsui_input-readonly_2rhyz_3fiyi_203")
                     # changing 6kb1z to 7gdci on 20250515
                     # changed 7gdci to 8c1nk on 20251006
                     # changed 8c1nk to 1dhxm and 196 to 203 on 20251120
                     # changed 1dhxm to mfjkh on 20260121
+                    # changed mfjkh to 3fiyi on 20260224
 
                     access_key = keys_to_copy[2].get_attribute("value")
                     secret_key = keys_to_copy[3].get_attribute("value")
@@ -140,6 +141,7 @@ def filter_files_by_date(files, start_date, end_date, product, s3_path_given):
 def filter_files_by_criteria(files, matching_text):
     print("Inside criteria match function")
     print(matching_text)
+    print(len(files))
     filtered_files = []
     for file in files:
         if matching_text.strip() in os.path.basename(file):

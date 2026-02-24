@@ -81,11 +81,12 @@ def fetch_credentials_via_selenium(account_id):
 
                     # Locate input fields for access keys and secret keys
                     time.sleep(3)
-                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_mfjkh_149.awsui_input-readonly_2rhyz_mfjkh_203")
+                    keys_to_copy = driver.find_elements(By.CSS_SELECTOR, "input.awsui_input_2rhyz_3fiyi_149.awsui_input-readonly_2rhyz_3fiyi_203")
                     # changing 6kb1z to 7gdci on 20250515
                     # changed 7gdci to 8c1nk on 20251006
                     # changed 8c1nk to 1dhxm and 196 to 203 on 20251120
                     # changed 1dhxm to mfjkh on 20260121
+                    # changed mfjkh to 3fiyi on 20260224
 
                     access_key = keys_to_copy[2].get_attribute("value")
                     secret_key = keys_to_copy[3].get_attribute("value")
@@ -99,6 +100,7 @@ def fetch_credentials_via_selenium(account_id):
     except Exception as e:
         print(e)  
     return access_key, secret_key, session_token
+
 
 def list_s3_files(bucket_name, folder_path, s3_client):
     """Lists all files in a specific S3 folder."""
@@ -274,6 +276,8 @@ if start_btn:
             else:
                 download_folder = product.split()[0]+"_"+datetime.now().strftime("%Y%m%d_%H%M%S")
                 os.makedirs(download_folder, exist_ok=True)
+
+            print(filtered_files)
 
             if filtered_files:
                 st.write(f"Found {len(filtered_files)} files. Downloading...")
